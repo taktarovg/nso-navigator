@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Навигатор поддержки и ИИ-решений · Новосибирская область (прототип)</title>
+<meta name="description" content="Прототип: какие меры поддержки и готовые ИИ-решения региона доступны вашему бизнесу, и чего не хватает.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;600;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">К содержимому</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#" data-go="start" aria-label="На главную">Навигатор поддержки НСО</a>
+    <nav aria-label="Разделы">
+      <button class="nav-btn" data-go="start" aria-current="page">Для бизнеса и разработчиков</button>
+      <button class="nav-btn" data-go="ministry">Что видит министерство</button>
+    </nav>
+  </div>
+  <p class="proto-bar wrap">Прототип. Это не официальный сервис министерства: данные ответов остаются в вашем браузере.</p>
+</header>
+
+<main id="main" class="wrap">
+
+  <!-- Старт -->
+  <section id="view-start" class="view" aria-labelledby="h-start">
+    <h1 id="h-start">Какая поддержка и какие ИИ-решения региона подходят вашему бизнесу</h1>
+    <p class="lead">Расскажите, чем вы занимаетесь. Сразу покажем меры поддержки, на которые можно рассчитывать, готовые решения новосибирских разработчиков и спросим, чего ещё не хватает, чтобы это можно было добавить.</p>
+
+    <div class="roles">
+      <button class="role" data-role="business">
+        <span class="role-t">Я владелец или руководитель бизнеса</span>
+        <span class="role-d">Хочу понять, какие меры поддержки мне доступны и какое ИИ-решение подойдёт под мою задачу.</span>
+      </button>
+      <button class="role" data-role="developer">
+        <span class="role-t">Я разработчик или стартап</span>
+        <span class="role-d">Хочу узнать о льготах и грантах, найти пилотных заказчиков и попасть в каталог решений региона.</span>
+      </button>
+    </div>
+
+    <dl class="facts" id="facts"></dl>
+  </section>
+
+  <!-- Профиль -->
+  <section id="view-profile" class="view" hidden aria-labelledby="h-profile">
+    <ol class="steps" aria-label="Шаги">
+      <li aria-current="step">О бизнесе</li>
+      <li>Что нужно</li>
+      <li>Результат</li>
+    </ol>
+    <h2 id="h-profile">Расскажите о себе</h2>
+    <form id="profile-form" novalidate>
+      <fieldset class="block" id="fs-about">
+        <legend id="about-legend">Чем занимается ваша компания</legend>
+        <label class="field" for="f-text">
+          <span class="field-l" id="f-text-l">Описание своими словами или текст с вашего сайта</span>
+          <textarea id="f-text" rows="4" placeholder="Например: делаем готовые блюда для магазинов, 40 сотрудников, три цеха"></textarea>
+        </label>
+        <label class="field" for="f-url">
+          <span class="field-l">Адрес сайта (необязательно)</span>
+          <input id="f-url" type="url" inputmode="url" placeholder="https://">
+          <span class="hint">В этой версии сайт по адресу не читается: подсказки строятся по тексту выше. Автоматическое чтение сайта — следующий этап.</span>
+        </label>
+        <p class="inferred" id="inferred" aria-live="polite"></p>
+      </fieldset>
+
+      <fieldset class="block" id="fs-activity">
+        <legend>Сфера</legend>
+        <div class="chips" id="activity-chips" role="radiogroup" aria-label="Сфера"></div>
+      </fieldset>
+
+      <fieldset class="block">
+        <legend>Этап</legend>
+        <div class="chips" id="stage-chips" role="radiogroup" aria-label="Этап"></div>
+      </fieldset>
+
+      <fieldset class="block" id="fs-dev" hidden>
+        <legend>Про ваш продукт</legend>
+        <div class="two">
+          <div>
+            <p class="field-l">Доля ИТ-деятельности в выручке не ниже 70%?</p>
+            <div class="chips" id="itshare-chips" role="radiogroup" aria-label="Доля ИТ в выручке"></div>
+          </div>
+          <div>
+            <p class="field-l">Продукт есть в реестре российского ПО?</p>
+            <div class="chips" id="registry-chips" role="radiogroup" aria-label="Реестр российского ПО"></div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="block" id="fs-project">
+        <legend>Есть ли проект с инвестициями (оборудование, внедрение, разработка)</legend>
+        <div class="chips" id="project-chips" role="radiogroup" aria-label="Размер проекта"></div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" class="btn primary">Дальше</button>
+        <button type="button" class="btn ghost" data-go="start">Назад</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Задачи -->
+  <section id="view-tasks" class="view" hidden aria-labelledby="h-tasks">
+    <ol class="steps" aria-label="Шаги">
+      <li>О бизнесе</li>
+      <li aria-current="step">Что нужно</li>
+      <li>Результат</li>
+    </ol>
+    <h2 id="h-tasks"></h2>
+    <p class="lead small" id="tasks-lead"></p>
+    <div class="chips wrapchips" id="task-chips" role="group" aria-label="Задачи"></div>
+    <div class="actions">
+      <button type="button" class="btn primary" id="to-result">Показать результат</button>
+      <button type="button" class="btn ghost" id="back-profile">Назад</button>
+    </div>
+  </section>
+
+  <!-- Результат -->
+  <section id="view-result" class="view" hidden aria-labelledby="h-result">
+    <ol class="steps" aria-label="Шаги">
+      <li>О бизнесе</li>
+      <li>Что нужно</li>
+      <li aria-current="step">Результат</li>
+    </ol>
+    <h2 id="h-result">Что нашлось для вас</h2>
+    <p class="lead small" id="result-sum"></p>
+
+    <div class="lanes">
+      <section class="lane" aria-labelledby="l1">
+        <h3 id="l1">Доступно вам <span class="count" id="c1"></span></h3>
+        <p class="lane-d">Подходите по условиям. Отметьте, знали ли вы об этих мерах: это показывает, где не хватает информации.</p>
+        <div id="lane-avail"></div>
+      </section>
+      <section class="lane" aria-labelledby="l2">
+        <h3 id="l2">Почти подходите <span class="count" id="c2"></span></h3>
+        <p class="lane-d">Мера есть, но не хватает одного условия. Эти ответы показывают, что мешает попасть в программу.</p>
+        <div id="lane-almost"></div>
+      </section>
+      <section class="lane gap" aria-labelledby="l3">
+        <h3 id="l3">Такой меры нет</h3>
+        <p class="lane-d">Напишите, что вам нужно и чего не хватает. Ответы собирает министерство, чтобы региональные или федеральные органы могли предусмотреть такую меру.</p>
+        <form id="need-form" novalidate>
+          <label class="field" for="n-text">
+            <span class="field-l">Чего не хватает вашему бизнесу</span>
+            <textarea id="n-text" rows="4" placeholder="Например: нужен пилотный заказчик для ИИ-контроля качества или компенсация обучения сотрудников"></textarea>
+          </label>
+          <p class="field-l">О чём это</p>
+          <div class="chips wrapchips" id="need-cats" role="group" aria-label="О чём запрос"></div>
+          <div id="pending-box"></div>
+          <details class="contact">
+            <summary>Хочу, чтобы со мной связались (необязательно)</summary>
+            <label class="field" for="c-name"><span class="field-l">Имя и компания</span><input id="c-name" type="text" autocomplete="organization"></label>
+            <label class="field" for="c-contact"><span class="field-l">Телефон или почта</span><input id="c-contact" type="text" autocomplete="email"></label>
+            <label class="check"><input type="checkbox" id="c-consent"> Согласен(на), что министерство использует эти данные, чтобы связаться со мной по моему запросу</label>
+          </details>
+          <button type="submit" class="btn signal" id="need-send">Передать министерству</button>
+          <p class="sent" id="need-sent" role="status" hidden></p>
+        </form>
+      </section>
+    </div>
+
+    <section class="catalog" aria-labelledby="h-cat">
+      <h3 id="h-cat">Готовые решения новосибирских разработчиков</h3>
+      <p class="lead small" id="cat-lead"></p>
+      <div class="catalog-tools">
+        <label class="check"><input type="checkbox" id="only-early"> Только ранние решения (на стадии прототипирования), готовые к пилоту</label>
+      </div>
+      <div id="cat-list"></div>
+      <p class="muted src-line" id="cat-src"></p>
+    </section>
+
+    <section class="pilot" id="pilot-box" hidden aria-labelledby="h-pilot">
+      <h3 id="h-pilot">Нужен пилотный заказчик или место в каталоге</h3>
+      <p class="lead small">В каталог проектного офиса попадают решения по анкете, которую министерство публикует в своём канале. Здесь можно оставить заявку на пилот: её увидят заказчики, когда они появятся в системе.</p>
+      <form id="pilot-form" novalidate>
+        <label class="field" for="p-name"><span class="field-l">Название продукта</span><input id="p-name" type="text"></label>
+        <label class="field" for="p-text"><span class="field-l">Что он делает и какой пилот нужен (где, с каким заказчиком, на какой срок)</span><textarea id="p-text" rows="3"></textarea></label>
+        <button type="submit" class="btn primary">Оставить заявку на пилот</button>
+        <p class="sent" id="pilot-sent" role="status" hidden></p>
+      </form>
+    </section>
+
+    <div class="actions"><button class="btn ghost" id="restart">Начать заново</button></div>
+  </section>
+
+  <!-- Министерство -->
+  <section id="view-ministry" class="view" hidden aria-labelledby="h-min">
+    <h2 id="h-min">Что видит министерство</h2>
+    <p class="lead small">Агрегированная картина по ответам. Это демонстрация: данные собраны только в этом браузере. В рабочей версии они хранятся на инфраструктуре министерства.</p>
+    <div class="actions inline">
+      <button class="btn ghost" id="load-demo">Загрузить условный пример</button>
+      <button class="btn ghost" id="export-json">Скачать JSON</button>
+      <button class="btn ghost" id="export-csv">Скачать CSV</button>
+      <button class="btn ghost danger" id="clear-all">Очистить</button>
+    </div>
+    <div id="min-body"></div>
+  </section>
+
+</main>
+
+<footer class="foot wrap">
+  <p>Данные о решениях: «Электронный каталог решений с применением искусственного интеллекта. Практика Новосибирской области», Проектный офис Министерства цифрового развития и связи Новосибирской области, август 2026 (обновление от 31.08.2026). Адрес проектного офиса: pm@rnicnso.ru.</p>
+  <p>Меры поддержки собраны по открытым источникам и проверены 8 октября 2026 г.; рядом с каждой мерой указан источник. Это справочная информация, не юридическая и не финансовая консультация.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
